@@ -1,2 +1,4 @@
 Django==2.1.2
-ipython
+pytest==4.0.1
+pytest-django==3.4.4
+pytest-pythonpath==0.7.3
