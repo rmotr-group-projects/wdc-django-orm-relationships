@@ -14,8 +14,13 @@ class Artist(models.Model):
     popularity = models.IntegerField()
     genre = models.CharField(choices=GENRE_CHOICES, max_length=255)
 
+    def __str__(self):
+        return self.name
 
 class Song(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     album_name = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return self.name
