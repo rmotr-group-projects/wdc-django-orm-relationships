@@ -4,37 +4,40 @@ from artists.models import Artist, Song
 def task_1_artist_exists():
     """Should return True if there's any artist called Eric Clapton, or False otherwise"""
     # HINT: Use .exists() function
-    pass
+    if Artist.objects.filter(artistic_name__icontains='Eric Clapton').exists():
+        return True
+    else:
+        return False    
 
 
 def task_2_first_song_ordered():
     """Should return the first Song ordered by title"""
     # HINT: Use .first() function
-    pass
+    return Song.objects.all().order_by('title').first()
 
 
 def task_3_last_artist_ordered():
     """Should return the last Artist ordered by artistic_name"""
     # HINT: Use .last() function
-    pass
+    return Artist.objects.all().order_by('artistic_name').last()
 
 
 def task_4_artist_songs_contains():
     """Should return all songs from artist whose artistic names contains the letter K"""
     # HINT: use double underscores "__" to navigate through model's FKs and fields
-    pass
+    return Song.objects.filter(artist__artistic_name__contains='K')
 
 
 def task_5_songs_exclude():
     """Should return all songs excluding the ones that contains the word 'Thrill' in its title"""
     # HINT: Use .exclude() function
-    pass
+    return Song.objects.exclude(title__contains='Thrill')
 
 
 def task_6_artist_name_starts_with():
     """Should return the amount of artists whose artistic name starts with the pattern 'Ji'"""
     # HINT: Use __startswith field lookup and .count() function
-    pass
+    
 
 
 def task_7_get_or_create_artist():
