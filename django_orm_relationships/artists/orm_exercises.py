@@ -37,6 +37,7 @@ def task_5_songs_exclude():
 def task_6_artist_name_starts_with():
     """Should return the amount of artists whose artistic name starts with the pattern 'Ji'"""
     # HINT: Use __startswith field lookup and .count() function
+    return Artist.objects.filter(artistic_name__startswith='Ji').count()
     
 
 
@@ -46,25 +47,30 @@ def task_7_get_or_create_artist():
         it doesn't. Return True if you had to create, or False otherwise.
     """
     # HINT: Use django `get_or_create()` function
-    pass
+    if Artist.objects.filter(artistic_name__icontains='Eric Clapton').exists():
+        return False
+    else:
+        Artist.objects.create(first_name='Eric', last_name='Clapton', artistic_name='Eric Clapton', picture_url='http://www.google.com', popularity=5,genre='Jazz')
+        return True
 
 
 def task_8_artist_songs_reverse_relationship():
     """Should return all songs from artist Stevie Wonders using reverse relationships"""
     # step 1: get Artist "Stevie Wonders"
-    artist = '...'
+    artist = Artist.objects.get(artistic_name='Stevie Wonders')
 
     # step 2: return all songs from that artist using .song_set reverse relationship
-    pass
+    return artist.song_set.all()
 
 
 def task_9_update_song_artist():
     """Should create a new Artist and assign it as the owner of the song called Superstition"""
     # step 1: create the artist
-    artist = '...'
+    artist = Artist.objects.create(first_name='ric', last_name='lapton', artistic_name='Eric Clapton', picture_url='http://www.google.com', popularity=5,genre='Jazz')
 
     # step 2: get the song called 'Superstition'
-    song = '...'
+    song = Song.objects.get(title='Superstition')
 
     # step 3: assign created artist to the song and save() the song model
-    pass
+    song.artist = artist
+    song.save()
